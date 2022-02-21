@@ -13,12 +13,22 @@ namespace FizzBuzz
                 output += "Fizz"; 
             }
             
-             if (n % 5 == 0)
+            if (n % 5 == 0)
             {
                 output += "Buzz"; 
             }
 
-            else 
+            if (n % 7 == 0)
+            {
+                output += "Bang"; 
+            }
+
+            if (n % 11 == 0)
+            {
+                output = "Bong"; 
+            }
+
+            if (output == "")
             {
                 output += n.ToString();
             }
