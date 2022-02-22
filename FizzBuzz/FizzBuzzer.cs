@@ -1,39 +1,31 @@
-using System;
+using FizzBuzz.Rules;
 
 namespace FizzBuzz
 {
     public class FizzBuzzer
     {
-        public string FizzBuzz(int n)
+        public List<IRule> Rules { get; set; }
+
+        public FizzBuzzer(List<IRule> rules)
         {
-            string output = "";
+            Rules = rules;
+        }
 
-            if (n % 3 == 0)
-            {
-                output += "Fizz"; 
-            }
-            
-            if (n % 5 == 0)
-            {
-                output += "Buzz"; 
-            }
+        public string FizzBuzz(int number)
+        {
+            List<string> output = new List<string>();
 
-            if (n % 7 == 0)
+            foreach (IRule rule in Rules)
             {
-                output += "Bang"; 
+                output = rule.Apply(output, number);
             }
 
-            if (n % 11 == 0)
+            if (output.Count == 0)
             {
-                output = "Bong"; 
+                return number.ToString();
             }
 
-            if (output == "")
-            {
-                output += n.ToString();
-            }
-
-            return output;
+            return string.Join("", output);
         }
     }
 }
